@@ -590,6 +590,17 @@ public class MainWindow extends JFrame
 		setupKeys(disastersMenu, "menu.disasters");
 		menuBar.add(disastersMenu);
 
+		menuItem = new JMenuItem(strings.getString("menu.disasters.BOMBER"));
+		setupKeys(menuItem, "menu.disasters.BOMBER");
+		menuItem.addActionListener(wrapActionListener(
+			new ActionListener() {
+			public void actionPerformed(ActionEvent ev)
+			{
+				onInvokeDisasterClicked(Disaster.BOMBER);
+			}
+			}));
+		disastersMenu.add(menuItem);
+		
 		menuItem = new JMenuItem(strings.getString("menu.disasters.MONSTER"));
 		setupKeys(menuItem, "menu.disasters.MONSTER");
 		menuItem.addActionListener(wrapActionListener(
@@ -1530,6 +1541,9 @@ public class MainWindow extends JFrame
 			break;
 		case MONSTER:
 			getEngine().makeMonster();
+			break;
+		case BOMBER:
+			getEngine().makeBomber();
 			break;
 		case MELTDOWN:
 			if (!getEngine().makeMeltdown()) {

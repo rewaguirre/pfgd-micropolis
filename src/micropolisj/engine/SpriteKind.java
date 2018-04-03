@@ -13,6 +13,8 @@ package micropolisj.engine;
  */
 public enum SpriteKind
 {
+	//is it possible that only 8 are allowed?
+	// Replaced airplane with bomber images for now. Will need to disable airplane.
 	TRA(1,5),
 	COP(2,8),
 	AIR(3,11),
@@ -20,8 +22,9 @@ public enum SpriteKind
 	GOD(5,16),
 	TOR(6,3),
 	EXP(7,6),
-	BUS(8,4);
-
+	BUS(8,4),
+	BOM(3,8);
+	// first number follows "obj" in filename, second number is quantity of frames
 	public final int objectId;
 	public final int numFrames;
 

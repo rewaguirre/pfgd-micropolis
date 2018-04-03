@@ -901,6 +901,8 @@ public class Micropolis
 			setFire();
 			break;
 		case 2:
+			makeBomber();
+			break;
 		case 3:
 			makeFlood();
 			break;
@@ -917,7 +919,6 @@ public class Micropolis
 			if (pollutionAverage > 60) {
 				makeMonster();
 			}
-			break;
 		}
 	}
 
@@ -2349,6 +2350,43 @@ public class Micropolis
 	{
 		assert !hasSprite(SpriteKind.GOD);
 		sprites.add(new MonsterSprite(this, xpos, ypos));
+		sendMessageAt(MicropolisMessage.MONSTER_REPORT, xpos, ypos);
+	}
+	
+	public void makeBomber()
+	{
+		makeSound(centerMassX, centerMassY, Sound.SIREN);
+		BomberSprite bomber = (BomberSprite) getSprite(SpriteKind.BOM);
+		if (bomber != null) {
+			// already have a bomber in town
+			bomber.soundCount = 1;
+			bomber.count = 1000;
+			bomber.flag = false;
+			// bomber flies toward pollution. may be redundant (see BomberSprite
+			bomber.destX = pollutionMaxLocationX;
+			bomber.destY = pollutionMaxLocationY;
+			return;
+		}
+
+		// try to find a suitable starting spot for bomber
+
+		for (int i = 0; i < 300; i++) {
+			int x = PRNG.nextInt(getWidth() - 19) + 10;
+			int y = PRNG.nextInt(getHeight() - 9) + 5;
+			int t = getTile(x, y);
+			makeBomberAt(x, y);
+			return;
+		}
+
+		// no "nice" location found, just start in center of map then
+		makeBomberAt(getWidth()/2, getHeight()/2);
+	}
+
+	void makeBomberAt(int xpos, int ypos)
+	{
+		assert !hasSprite(SpriteKind.BOM);
+		sprites.add(new BomberSprite(this, xpos, ypos));
+		sendMessageAt(MicropolisMessage.BOMBER_REPORT, xpos, ypos);
 	}
 
 	public void makeTornado()
