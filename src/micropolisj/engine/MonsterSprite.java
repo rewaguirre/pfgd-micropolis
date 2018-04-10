@@ -178,7 +178,7 @@ public class MonsterSprite extends Sprite
 				s.explodeSprite();
 			}
 		}
-		// turns everything bomber touches to rubble except dirt. Bomber probably shouldn't bomb trees.
+		// turns everything it touches to rubble except dirt.
 		destroyTile(x / 16, y / 16);
 	}
 }

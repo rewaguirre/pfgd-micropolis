@@ -173,7 +173,7 @@ public abstract class Sprite
 	 * Destroys whatever is at the specified location,
 	 * replacing it with fire, rubble, or water as appropriate.
 	 */
-	// I may need to make a custom copy of this for the bomber to kill only city tiles
+	// I may need to make a custom copy of this for the bomber to kill only city tiles. Update: made explosions instead.
 	final void destroyTile(int xpos, int ypos)
 	{
 		if (!city.testBounds(xpos, ypos))

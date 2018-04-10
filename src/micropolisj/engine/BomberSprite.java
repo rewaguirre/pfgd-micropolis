@@ -52,7 +52,8 @@ public class BomberSprite extends Sprite
 		//Setting origin and destination (pollution for now)
 		this.origX = x;
 		this.origY = y;
-		this.count = 1500;
+		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
+		this.count = 1000;
 		CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
@@ -70,7 +71,7 @@ public class BomberSprite extends Sprite
 		if (soundCount > 0) {
 			soundCount--;
 		}
-		// countdown for disaster?
+		// countdown for disaster. set in Micropolis.java. usually for self-terminating disasters
 		if (this.count > 0) {
 			this.count--;
 		}
@@ -86,18 +87,20 @@ public class BomberSprite extends Sprite
 			}
 			else {
 				// destination was origX, origY;
-				// hide the sprite
+				// removes the sprite
 				this.frame = 0;
 				return;
 			}
 		}
 
+		//Lets bomber turn
 		int z = this.frame;
 		if (city.acycle % 3 == 0) {
 			int d = getDir(x, y, destX, destY);
 			z = turnTo(z, d);
 			this.frame = z;
 		}
+		
 		// Make the noise!
 		if (soundCount == 0) {
 			city.makeSound(x/16, y/16, Sound.EXPLOSION_HIGH);
@@ -105,7 +108,7 @@ public class BomberSprite extends Sprite
 			soundCount = 20;
 		}
 		
-		// What does this do?
+		// What does this do? something about sprite movement
 		x += CDx[z];
 		y += CDy[z];
 	
@@ -121,7 +124,7 @@ public class BomberSprite extends Sprite
 				s.explodeSprite();
 			}
 		}
-
+		// This is how the monster makes rubble. Removed in favor of explosions.
 		//destroyTile(x / 16, y / 16);
 	}
 }

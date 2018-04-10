@@ -2355,10 +2355,11 @@ public class Micropolis
 	
 	public void makeBomber()
 	{
-		makeSound(centerMassX, centerMassY, Sound.SIREN);
+		//copied from earthquake for global sound effect
+		makeSound(centerMassX, centerMassY, Sound.AIR_RAID);
 		BomberSprite bomber = (BomberSprite) getSprite(SpriteKind.BOM);
+		// makes a bomber if there isn't one already
 		if (bomber != null) {
-			// already have a bomber in town
 			bomber.soundCount = 1;
 			bomber.count = 1000;
 			bomber.flag = false;

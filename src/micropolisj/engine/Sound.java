@@ -31,7 +31,7 @@ public enum Sound
 	SIREN         ("siren"),
 	HEAVYTRAFFIC  ("heavytraffic"),
 	MONSTER       ("zombie-roar-5"),
-	BOMBER        ("bomber");
+	AIR_RAID        ("AirRaid16BitStereo");
 
 	String wavName;
 	private Sound(String wavName)
