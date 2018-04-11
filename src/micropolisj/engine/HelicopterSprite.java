@@ -85,7 +85,8 @@ public class HelicopterSprite extends Sprite
 			// send report, if hovering over high traffic area
 			int xpos = this.x / 16;
 			int ypos = this.y / 16;
-
+			
+			// 1 in 8 chance of going to traffic if traffic is high
 			if (city.getTrafficDensity(xpos, ypos) > 170 &&
 				city.PRNG.nextInt(8) == 0)
 			{

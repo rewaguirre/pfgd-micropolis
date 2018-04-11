@@ -2369,8 +2369,9 @@ public class Micropolis
 			return;
 		}
 
-		// try to find a suitable starting spot for bomber (copied from monster) 
+		//Old bomber launcher. If spawn points work then this is no longer needed. 
 /**
+ 		// try to find a suitable starting spot for bomber (copied from monster) 
 		for (int i = 0; i < 300; i++) {
 			int x = PRNG.nextInt(getWidth() - 19) + 10;
 			int y = PRNG.nextInt(getHeight() - 9) + 5;
@@ -2378,21 +2379,23 @@ public class Micropolis
 			makeBomberAt(x, y);
 			return;
 		}
-*/
-		// no "nice" location found, just start in center of map then
-		//makeBomberAt(getWidth()/2, getHeight()/2);
 
-		//attempt to set 2 spawn points and randomly pick between them
-		if (PRNG.nextInt(4) == 0) {
+		// no "nice" location found, just start in center of map then
+			makeBomberAt(getWidth()/2, getHeight()/2);
+		 */
+		
+		//Set spawn points and randomly pick between them
+		if (PRNG.nextInt(4) == 0) { 		//West Spawn
 			makeBomberAt(0, getHeight()/2);
 		}
-		else if (PRNG.nextInt(4) == 1) {
+		else if (PRNG.nextInt(4) == 1) {	//North Spawn
 			makeBomberAt(getWidth()/2, 0);
 		}
-		else if (PRNG.nextInt(4) == 2) {
+		//
+		else if (PRNG.nextInt(4) == 2) {	//East Spawn
 			makeBomberAt(getWidth(), getHeight()/2);
 		}
-		else {
+		else {								//North Spawn
 			makeBomberAt(getWidth()/2, getHeight());
 		}
 	}
