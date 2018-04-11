@@ -67,11 +67,11 @@ public class BomberSprite extends Sprite
 		if (this.frame == 0) {
 			return;
 		}
-		// countdown for sound
+		// countdown for sound/bombs
 		if (soundCount > 0) {
 			soundCount--;
 		}
-		// countdown for disaster. set in Micropolis.java. usually for self-terminating disasters
+		// countdown for disaster. set in Micropolis.java. Usually for self-terminating disasters. Currently unused.
 		if (this.count > 0) {
 			this.count--;
 		}
@@ -101,7 +101,7 @@ public class BomberSprite extends Sprite
 			this.frame = z;
 		}
 		
-		// Make the noise!
+		// Make the noise! Also drop the bomb I guess
 		if (soundCount == 0) {
 			city.makeSound(x/16, y/16, Sound.EXPLOSION_HIGH);
 			city.makeExplosionAt(x, y);
