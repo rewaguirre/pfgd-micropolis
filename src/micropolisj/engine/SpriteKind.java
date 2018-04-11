@@ -14,7 +14,7 @@ package micropolisj.engine;
 public enum SpriteKind
 {
 	//is it possible that only 8 are allowed?
-	// Replaced airplane with bomber images for now. Will need to disable airplane.
+	// Replaced airplane with bomber images for now. Disabled the airplane launcher in MapScanner.
 	TRA(1,5),
 	COP(2,8),
 	AIR(3,11),
