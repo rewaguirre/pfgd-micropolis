@@ -2361,7 +2361,7 @@ public class Micropolis
 		// makes a bomber if there isn't one already
 		if (bomber != null) {
 			bomber.soundCount = 1;
-			bomber.count = 2500;
+			bomber.count = 1000;
 			bomber.flag = false;
 			// bomber flies toward pollution. may be redundant (see BomberSprite
 			bomber.destX = pollutionMaxLocationX;
@@ -2369,7 +2369,7 @@ public class Micropolis
 			return;
 		}
 
-		// try to find a suitable starting spot for bomber (copied from monster) 
+		// REMOVED: try to find a suitable starting spot for bomber (copied from monster) 
 /**
 		for (int i = 0; i < 300; i++) {
 			int x = PRNG.nextInt(getWidth() - 19) + 10;
@@ -2379,10 +2379,10 @@ public class Micropolis
 			return;
 		}
 */
-		// no "nice" location found, just start in center of map then
+		// REMOVED: no "nice" location found, just start in center of map then
 		//makeBomberAt(getWidth()/2, getHeight()/2);
 
-		//attempt to set 2 spawn points and randomly pick between them
+		//attempt to set spawn points and randomly pick between them
 		if (PRNG.nextInt(4) == 0) {
 			makeBomberAt(0, getHeight()/2);
 		}

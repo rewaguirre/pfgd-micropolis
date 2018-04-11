@@ -53,7 +53,7 @@ public class BomberSprite extends Sprite
 		this.origX = x;
 		this.origY = y;
 		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
-		this.count = 2500;
+		this.count = 1000;
 		CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
@@ -93,16 +93,23 @@ public class BomberSprite extends Sprite
 			}
 		}
 
-		//Lets bomber turn
-		int z = this.frame;
-		if (city.acycle % 3 == 0) {
-			int d = getDir(x, y, destX, destY);
-			z = turnTo(z, d);
-			this.frame = z;
-		}
+		//holding pattern during timer
+        int z = this.frame;
+        if (city.acycle % 3 == 0) {
+            if (this.count > 0) { //countdown still happening
+                z--;
+                if (z < 2) { z=8; }
+                this.frame = z;
+            }
+            else { // go to destination
+            int d = getDir(x, y, destX, destY);
+            z = turnTo(z, d);
+            this.frame = z;
+            }
+        }
 		
-		// Make the noise!
-		if (soundCount == 0) {
+		// Make the noise! Also drop the bomb
+		if (soundCount == 0 && this.count == 0) {
 			city.makeSound(x/16, y/16, Sound.EXPLOSION_HIGH);
 			city.makeExplosionAt(x, y);
 			soundCount = 20;
@@ -112,7 +119,7 @@ public class BomberSprite extends Sprite
 		x += CDx[z];
 		y += CDy[z];
 	
-		// Kills whatever sprite the bomber touches
+		// Kills whatever sprite the bomber collides with.
 		for (Sprite s : city.allSprites())
 		{
 			if (checkSpriteCollision(s) &&
