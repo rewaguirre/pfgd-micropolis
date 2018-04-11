@@ -2382,21 +2382,51 @@ public class Micropolis
 
 		// no "nice" location found, just start in center of map then
 			makeBomberAt(getWidth()/2, getHeight()/2);
-		 */
+ */
 		
-		//Set spawn points and randomly pick between them
+		//First attempt at random spawn points
+/**		
 		if (PRNG.nextInt(4) == 0) { 		//West Spawn
 			makeBomberAt(0, getHeight()/2);
 		}
 		else if (PRNG.nextInt(4) == 1) {	//North Spawn
 			makeBomberAt(getWidth()/2, 0);
 		}
-		//
 		else if (PRNG.nextInt(4) == 2) {	//East Spawn
 			makeBomberAt(getWidth(), getHeight()/2);
 		}
 		else {								//North Spawn
 			makeBomberAt(getWidth()/2, getHeight());
+		}
+*/		
+		
+		//Second attempt: Set spawn points and randomly pick between them
+		switch (PRNG.nextInt(8))
+		{
+		case 0:
+			makeBomberAt(0, getHeight()/2);				//West Spawn
+			break;
+		case 1:
+			makeBomberAt(getWidth()/2, 0);  			//North Spawn
+			break;
+		case 2:
+			makeBomberAt(getWidth(), getHeight()/2);	//East Spawn
+			break;
+		case 3:
+			makeBomberAt(getWidth()/2, getHeight());	//South Spawn
+			break;
+		case 4:
+			makeBomberAt(0, 0);							//NW Spawn
+			break;
+		case 5:
+			makeBomberAt(getWidth(), 0);				//NE Spawn
+			break;
+		case 6:
+			makeBomberAt(getWidth(), getHeight());		//SE Spawn
+			break;
+		case 7:
+			makeBomberAt(0, getHeight());				//SW Spawn
+			break;
 		}
 	}
 
