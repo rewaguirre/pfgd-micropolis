@@ -288,9 +288,9 @@ class MapScanner extends TileBehavior
 		}
 
 		if (powerOn) {
-
+// The below would generate airplanes. I set it to helicopters since I needed the plane's spot for my bomber.
 			if (PRNG.nextInt(6) == 0) {
-				city.generatePlane(xpos, ypos);
+				city.generateCopter(xpos, ypos);
 			}
 
 			if (PRNG.nextInt(13) == 0) {
