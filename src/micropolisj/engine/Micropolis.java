@@ -2366,8 +2366,8 @@ public class Micropolis
 			bomber.count = 160;
 			bomber.flag = false;
 			// bomber flies toward pollution. may be redundant (see BomberSprite
-			bomber.destX = pollutionMaxLocationX;
-			bomber.destY = pollutionMaxLocationY;
+			bomber.destX = centerMassX;
+			bomber.destY = centerMassY;
 			return;
 		}
 

@@ -51,12 +51,16 @@ public class BomberSprite extends Sprite
 		
 		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
 		this.count = 160;
-		//Setting origin and destination (pollution for now)
+		//Setting origin and destination
 		this.origX = x;
 		this.origY = y;
-		CityLocation p = city.getLocationOfMaxPollution();
+	/**	Find path to pollution
+	    CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
+	*/	
+		this.destX = engine.centerMassX * 16 + 8;
+		this.destY = engine.centerMassY * 16 + 8;
 		this.flag = false;
 		this.frame = 5;
 	}
@@ -79,14 +83,14 @@ public class BomberSprite extends Sprite
 
 			// reached destination
 			if (!flag) {
-				// destination was the pollution center;
+				// destination was the center;
 				// now head for home
 				flag = true;
 				destX = origX;
 				destY = origY;
 			}
 			else {
-				// destination was origX, origY;
+				// destination was spawn;
 				// removes the sprite
 				this.frame = 0;
 				return;
@@ -96,12 +100,12 @@ public class BomberSprite extends Sprite
 		//Holding pattern
         int z = this.frame;
         if (city.acycle % 3 == 0) {
-            if (this.count > 0) { //countdown still happening
+            if (this.count > 0) { 				//countdown still happening
                 z--;
                 if (z < 2) { z=8; }
                 this.frame = z;
             }
-            else { // go to destination
+            else { 								// go to destination
             int d = getDir(x, y, destX, destY);
             z = turnTo(z, d);
             this.frame = z;
