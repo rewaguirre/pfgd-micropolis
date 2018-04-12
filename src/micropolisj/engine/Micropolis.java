@@ -2382,7 +2382,7 @@ public class Micropolis
 			return;
 		}
 
-		// no "nice" location found, just start in center of map then
+		// no "nice" location found, just start in center of map then (copied from monster) 
 			makeBomberAt(getWidth()/2, getHeight()/2);
  */
 		

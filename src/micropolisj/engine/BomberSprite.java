@@ -49,11 +49,11 @@ public class BomberSprite extends Sprite
 		this.offx = -32;
 		this.offy = -32;
 		
+		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
+		this.count = 2500;
 		//Setting origin and destination (pollution for now)
 		this.origX = x;
 		this.origY = y;
-		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
-		this.count = 2500;
 		CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
@@ -75,7 +75,7 @@ public class BomberSprite extends Sprite
 		if (this.count > 0) {
 			this.count--;
 		}
-		if (getDis(x, y, destX, destY) < 60) {
+		if (getDis(x, y, destX, destY) < 16) {
 
 			// reached destination
 			if (!flag) {
@@ -105,7 +105,7 @@ public class BomberSprite extends Sprite
 		if (soundCount == 0) {
 			city.makeSound(x/16, y/16, Sound.EXPLOSION_HIGH);
 			city.makeExplosionAt(x, y);
-			soundCount = 20;
+			soundCount = 16;
 		}
 		
 		// What does this do? something about sprite movement
