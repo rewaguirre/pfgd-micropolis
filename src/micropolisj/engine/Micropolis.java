@@ -2361,7 +2361,7 @@ public class Micropolis
 		// makes a bomber if there isn't one already
 		if (bomber != null) {
 			bomber.soundCount = 1;
-			bomber.count = 1000;
+			bomber.count = 160;
 			bomber.flag = false;
 			// bomber flies toward pollution. may be redundant (see BomberSprite
 			bomber.destX = pollutionMaxLocationX;

@@ -53,7 +53,7 @@ public class BomberSprite extends Sprite
 		this.origX = x;
 		this.origY = y;
 		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
-		this.count = 1000;
+		this.count = 160;
 		CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
