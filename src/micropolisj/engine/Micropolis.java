@@ -2357,21 +2357,21 @@ public class Micropolis
 	
 	public void makeBomber()
 	{
-		//copied from earthquake for global sound effect
+		//copied from earthquake for global air raid sound effect
 		makeSound(centerMassX, centerMassY, Sound.AIR_RAID);
 		BomberSprite bomber = (BomberSprite) getSprite(SpriteKind.BOM);
-		// makes a bomber if there isn't one already
+		// makes a bomber if there isn't one already. Seems to divert if bomber is already on way to target.
 		if (bomber != null) {
 			bomber.soundCount = 1;
-			bomber.count = 160;
+			bomber.count = 160;		// 160 ticks * 0.125 = 20 delay of 20 seconds
 			bomber.flag = false;
-			// bomber flies toward pollution. may be redundant (see BomberSprite
+			// bomber flies to city center (overwrites state of BomberSprite)
 			bomber.destX = centerMassX;
 			bomber.destY = centerMassY;
 			return;
 		}
 
-		//Old bomber launcher. If spawn points work then this is no longer needed. 
+		//Old bomber launcher. Spawn points work so this is no longer needed. 
 /**
  		// try to find a suitable starting spot for bomber (copied from monster) 
 		for (int i = 0; i < 300; i++) {
@@ -2386,7 +2386,7 @@ public class Micropolis
 			makeBomberAt(getWidth()/2, getHeight()/2);
  */
 		
-		//First attempt at random spawn points
+		//First attempt at random spawn points. No longer needed. 
 /**		
 		if (PRNG.nextInt(4) == 0) { 		//West Spawn
 			makeBomberAt(0, getHeight()/2);
@@ -2402,7 +2402,7 @@ public class Micropolis
 		}
 */		
 		
-		//Second attempt: Set spawn points and randomly pick between them
+		//Second attempt: Set spawn points and randomly pick between them. Keep using this.
 		switch (PRNG.nextInt(8))
 		{
 		case 0:
@@ -2436,7 +2436,7 @@ public class Micropolis
 	{
 		sendMessageAt(MicropolisMessage.BOMBER_REPORT, xpos, ypos);
 		assert !hasSprite(SpriteKind.BOM);
-		// may be able to put a timer here to delay bomber spawning
+		// may be possible to put a timer here to delay bomber spawning at all
 		sprites.add(new BomberSprite(this, xpos, ypos));
 	}
 

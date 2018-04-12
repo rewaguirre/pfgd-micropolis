@@ -33,7 +33,7 @@ public class BomberSprite extends Sprite
 	//   4 : south
 	//   6 : west
 
-	//What does this do?
+	//Used for move distance
 	static int [] CDx = { 0,  0,  3,  5,  3,  0, -3, -5, -3 };
 	static int [] CDy = { 0, -5, -3,  0,  3,  5,  3,  0, -3 };
 	static final int SOUND_FREQ = 500;
@@ -49,16 +49,18 @@ public class BomberSprite extends Sprite
 		this.offx = -32;
 		this.offy = -32;
 		
-		//this.count usually used for disasters that time out. Check value in Micropolis if changing.
-		this.count = 160;
-		//Setting origin and destination
+		//this.count usually used for disasters that time out. Here it times bomber's holding pattern. 
+		this.count = 160;		//Check value in Micropolis if changing. It may overwrite this.
+		//Setting origin
 		this.origX = x;
 		this.origY = y;
+	// Pollution seeking from Monster. Not needed anymore. 
 	/**	Find path to pollution
 	    CityLocation p = city.getLocationOfMaxPollution();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
 	*/	
+		//New coordinates for city center. 
 		this.destX = engine.centerMassX * 16 + 8;
 		this.destY = engine.centerMassY * 16 + 8;
 		this.flag = false;
@@ -75,7 +77,7 @@ public class BomberSprite extends Sprite
 		if (soundCount > 0) {
 			soundCount--;
 		}
-		// countdown for disaster. set in Micropolis.java. Usually for self-terminating disasters. Currently unused.
+		// countdown for holding pattern.
 		if (this.count > 0) {
 			this.count--;
 		}
@@ -83,8 +85,8 @@ public class BomberSprite extends Sprite
 
 			// reached destination
 			if (!flag) {
-				// destination was the center;
-				// now head for home
+				// destination was the target;
+				// now head for spawn
 				flag = true;
 				destX = origX;
 				destY = origY;
@@ -119,7 +121,7 @@ public class BomberSprite extends Sprite
 			soundCount = 16;
 		}
 		
-		// What does this do? something about sprite movement
+		// What does this do? Something about sprite movement distance.
 		x += CDx[z];
 		y += CDy[z];
 	
