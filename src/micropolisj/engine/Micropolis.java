@@ -901,7 +901,9 @@ public class Micropolis
 			setFire();
 			break;
 		case 2:
+			if (PRNG.nextInt(4) == 0) {
 			makeBomber();
+			}
 			break;
 		case 3:
 			makeFlood();
